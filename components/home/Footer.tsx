@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
 
         {/* Navigation */}
         <div>
-          <h3 className="text-lg font-semibold text-white mb-3">Quick Links</h3>
+          <h3 className="text-lg font-semibold text-foreground mb-3">Quick Links</h3>
           <ul className="space-y-2 text-sm">
             <li>
               <Link href="/">Home</Link>
@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
 
         {/* Resources */}
         <div>
-          <h3 className="text-lg font-semibold text-white mb-3">Resources</h3>
+          <h3 className="text-lg font-semibold text-foreground mb-3">Resources</h3>
           <ul className="space-y-2 text-sm">
             <li>
               <Link href="/privacy">Privacy Policy</Link>
@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
 
         {/* CTA & Socials */}
         <div>
-          <h3 className="text-lg font-semibold text-white mb-3">
+          <h3 className="text-lg font-semibold text-foreground mb-3">
             Join Our Community
           </h3>
           <p className="text-sm mb-4">
