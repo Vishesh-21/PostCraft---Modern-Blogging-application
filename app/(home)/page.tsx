@@ -5,6 +5,7 @@ import { HeroSection } from "@/components/home/HeroSection";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { StatsSection } from "@/components/home/StatsSection";
 import { Testimonials } from "@/components/home/Testimonials";
+import { TopArticles } from "@/components/home/TopArticles";
 import React from "react";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <Navbar />
       <div className="mx-auto max-w-6xl mt-4 md:px-0 px-4 ">
         <HeroSection />
+        <TopArticles/>
         <Features />
         <HowItWorks />
         <StatsSection/>

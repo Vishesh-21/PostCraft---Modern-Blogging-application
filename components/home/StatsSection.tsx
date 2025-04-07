@@ -11,7 +11,7 @@ export const StatsSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
             Our Impact in Numbers
           </h2>
-          <p className="text-foreground">
+          <p className="text-sm text-foreground mx-auto font-normal text-center">
             We’re proud of what our creators have achieved.
           </p>
         </CardTitle>

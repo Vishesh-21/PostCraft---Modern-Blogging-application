@@ -11,7 +11,7 @@ export const HowItWorks: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-6">
             How It Works
           </h2>
-          <p className="mt-3 text-foreground mx-auto text-center">
+          <p className="text-sm text-foreground mx-auto font-normal text-center">
             Start your blogging journey in just a few simple steps.
           </p>
         </CardTitle>

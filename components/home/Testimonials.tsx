@@ -45,7 +45,7 @@ export const Testimonials = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
             What Our Users Say
           </h2>
-          <p className="mb-12">
+          <p className="text-sm text-foreground mx-auto mb-12 font-normal text-center">
             Hear from creators who are growing with our platform.
           </p>
         </CardTitle>
