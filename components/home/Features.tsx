@@ -11,7 +11,7 @@ import { features } from "../utils/features";
 
 export const Features: React.FC = () => {
   return (
-    <section className="w-full min-h-screen flex items-center">
+    <section className="w-full min-h-screen flex items-center mt-16">
       <Card className="bg-background py-10">
         <CardHeader>
           <CardTitle>

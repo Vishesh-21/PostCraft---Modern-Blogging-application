@@ -1,20 +1,22 @@
 "use client";
 import CountUp from "react-countup";
 import { statsData } from "../utils/statsData";
+import { Card, CardContent, CardTitle } from "../ui/card";
 
 export const StatsSection = () => {
-
   return (
-    <section className="min-h-[80vh] flex items-center">
-      <div className="text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-          Our Impact in Numbers
-        </h2>
-        <p className="text-foreground mb-12">
-          We’re proud of what our creators have achieved.
-        </p>
+    <section className="min-h-[80vh] md:mb-0 mb-8  flex items-center mt-10">
+      <Card className="text-center bg-background py-10 w-full">
+        <CardTitle>
+          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
+            Our Impact in Numbers
+          </h2>
+          <p className="text-foreground">
+            We’re proud of what our creators have achieved.
+          </p>
+        </CardTitle>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <CardContent className="grid grid-cols-1 mt-6 md:grid-cols-4 gap-5">
           {statsData.map((stat) => (
             <div
               key={stat.id}
@@ -34,8 +36,8 @@ export const StatsSection = () => {
               <p className="text-sm text-background">{stat.description}</p>
             </div>
           ))}
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </section>
   );
 };

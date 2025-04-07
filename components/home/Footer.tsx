@@ -5,8 +5,8 @@ import { Input } from "../ui/input";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="max-w-6xl mx-auto py-12 border-t-1 border-foreground">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+    <footer className="max-w-6xl md:mt-0 mt-6 mx-auto py-12 border-t-1 border-foreground/60 ">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 md:gap-10 gap-5">
         {/* Brand */}
         <div>
           <h2 className="text-2xl font-bold text-primary">PostCraft</h2>

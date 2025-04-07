@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, CardTitle } from "../ui/card";
+import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import { Star } from "lucide-react";
 
@@ -16,7 +16,7 @@ export const HowItWorks: React.FC = () => {
           </p>
         </CardTitle>
 
-        <CardContent className="w-full px-4">
+        <CardContent className="w-full">
           <h1 className="text-lg font-semibold">📝 How It Works ?</h1>
           <p className="text-justify text-foreground/50">
             :- Starting your blogging journey with PostCraft is effortless and
@@ -35,8 +35,8 @@ export const HowItWorks: React.FC = () => {
             can track your growth and optimize your content to reach even more
             people. <br />
             <br /> Whether you want to share personal stories, professional
-            insights, or your creative work, PostCraft empowers you to build your
-            voice and grow your audience with confidence.
+            insights, or your creative work, PostCraft empowers you to build
+            your voice and grow your audience with confidence.
           </p>
         </CardContent>
         <CardTitle className="text-center">
