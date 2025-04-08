@@ -11,7 +11,7 @@ export const SearchInput = () => {
           placeholder="Search articles..."
           type="text"
           name="search"
-          className="pl-8 w-52 focus-visible:ring-1"
+          className="pl-8 md:w-52 w-full focus-visible:ring-1"
         />
       </div>
     </form>

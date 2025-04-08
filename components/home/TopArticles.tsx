@@ -26,7 +26,7 @@ export const TopArticles = () => {
             return (
               <Link
                 href={"#"}
-                className="group w-full md:max-w-sm rounded-2xl overflow-hidden shadow-lg bg-background transition-shadow border-1 border-foreground/60 duration-300"
+                className="group relative w-full md:max-w-sm rounded-2xl overflow-hidden shadow-lg bg-background transition-shadow border-1 border-foreground/60 duration-300"
                 key={article.id}
               >
                 <Image
@@ -52,7 +52,7 @@ export const TopArticles = () => {
                     </span>
                     <span>12 mints read</span>
                   </div>
-                  <div className="mt-3 flex items-center justify-end gap-4 text-sm text-foreground">
+                  <div className="mt-3 absolute bottom-2 right-4 flex items-center justify-end gap-4 text-sm text-foreground">
                     <div className="flex items-center gap-1">
                       <Eye size={16} />
                       {article.views}

@@ -18,7 +18,7 @@ export const HowItWorks: React.FC = () => {
 
         <CardContent className="w-full">
           <h1 className="text-lg font-semibold">📝 How It Works ?</h1>
-          <p className="text-justify text-foreground/50">
+          <p className="text-justify text-foreground/50 mt-6">
             :- Starting your blogging journey with PostCraft is effortless and
             rewarding. First, sign up for free and set up your personal profile
             in just a few clicks — no tech skills needed. <br />
