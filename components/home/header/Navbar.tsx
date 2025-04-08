@@ -7,6 +7,13 @@ import { ToggleMode } from "./ToggleMode";
 import { SearchInput } from "./SearchInput";
 import { X } from "lucide-react";
 import { GiHamburgerMenu } from "react-icons/gi";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/nextjs";
 
 export const Navbar: React.FC = () => {
   const [isMobileDevice, setIsMobileDevice] = useState(false);
@@ -58,14 +65,35 @@ export const Navbar: React.FC = () => {
             <SearchInput />
           </div>
           <ToggleMode />
-          <div className="hidden md:flex items-center space-x-2">
-            <Button variant={"secondary"} className="cursor-pointer">
-              Signup
-            </Button>
-            <Button className="cursor-pointer">Login</Button>
-          </div>
 
-          {/* mobile view section  */}
+          {/* user authentication actions */}
+          <SignedIn>
+            <UserButton
+              appearance={{
+                elements: {
+                  avatarBox: {
+                    width: "34px",
+                    height: "34px",
+                  },
+                },
+              }}
+            />
+          </SignedIn>
+
+          <SignedOut>
+            <div className="hidden md:flex items-center space-x-2">
+              <SignUpButton>
+                <Button variant={"secondary"} className="cursor-pointer">
+                  Signup
+                </Button>
+              </SignUpButton>
+              <SignInButton>
+                <Button className="cursor-pointer">Login</Button>
+              </SignInButton>
+            </div>
+          </SignedOut>
+
+          {/* buttons for mobile devices  */}
           <Button
             variant={"ghost"}
             className="md:hidden cursor-pointer text-muted-foreground hover:text-foreground hover:bg-transparent"
@@ -80,6 +108,7 @@ export const Navbar: React.FC = () => {
           </Button>
         </div>
 
+        {/* mobile view section  */}
         {isMobileDevice && (
           <div className="fixed bg-background w-full h-50vh top-16 right-0 flex flex-col py-6 px-5">
             <div className="flex flex-col gap-3 text-[0.9rem] font-[500]">
