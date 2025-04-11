@@ -32,7 +32,7 @@ export const DashboardSidebar = () => {
           </Button>
         </Link>
 
-        <Link href={"/dashboard"}>
+        <Link href={"/dashboard/articles/create"}>
           <Button
             className="w-full justify-start cursor-pointer"
             variant="ghost"
