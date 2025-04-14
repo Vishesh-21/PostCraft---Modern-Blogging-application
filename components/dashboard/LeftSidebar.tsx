@@ -10,11 +10,11 @@ export const LeftSidebar = () => {
   const [mobileDevice, setMobileDevice] = useState(false);
 
   return (
-    <div>
+    <div className="relative">
       {/* to show it on mobile devices  */}
       <Sheet open={mobileDevice} onOpenChange={setMobileDevice}>
         <SheetTrigger asChild>
-          <Button className="md:hidden block cursor-pointer m-4">
+          <Button className="md:hidden absolute top-2 block cursor-pointer m-4">
             <LayoutDashboard className="h-5 w-5" />
           </Button>
         </SheetTrigger>

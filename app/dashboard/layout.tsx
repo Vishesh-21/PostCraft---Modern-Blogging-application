@@ -6,7 +6,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen w-full">
       <div className="flex">
         <LeftSidebar />
-        <div className="flex-1">{children}</div>
+        <div className="flex-1 max-h-screen overflow-y-scroll">{children}</div>
       </div>
     </div>
   );

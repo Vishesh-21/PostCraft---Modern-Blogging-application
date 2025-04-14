@@ -34,7 +34,7 @@ export const Navbar: React.FC = () => {
         {/* desktop view section  */}
         <div className="hidden md:flex items-center gap-10 text-[0.9rem] font-[500]">
           <Link
-            href={"/articles"}
+            href={"/dashboard/articles/create"}
             className="hover:text-primary transition-all duration-200"
           >
             Articles
@@ -52,7 +52,7 @@ export const Navbar: React.FC = () => {
             About
           </Link>
           <Link
-            href={"/Dashboard"}
+            href={"/dashboard"}
             className="hover:text-primary transition-all duration-200"
           >
             Dashboard
@@ -114,7 +114,7 @@ export const Navbar: React.FC = () => {
             <div className="flex flex-col gap-3 text-[0.9rem] font-[500]">
               <SearchInput />
               <Link
-                href={"/articles"}
+                href={"/dashboard/articles/create"}
                 className="hover:text-primary transition-all duration-200"
               >
                 Articles
@@ -132,7 +132,7 @@ export const Navbar: React.FC = () => {
                 About
               </Link>
               <Link
-                href={"/Dashboard"}
+                href={"/dashboard"}
                 className="hover:text-primary transition-all duration-200"
               >
                 Dashboard

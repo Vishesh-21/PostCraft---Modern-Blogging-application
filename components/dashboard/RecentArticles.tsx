@@ -19,8 +19,25 @@ import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { GiHorizonRoad } from "react-icons/gi";
 import { DeleteIcon, Ellipsis, PenIcon } from "lucide-react";
 import Link from "next/link";
+import { Prisma } from "@prisma/client";
 
-export const RecentArticles = () => {
+type reactArticlesProps = {
+  articles: Prisma.ArticlesGetPayload<{
+    include: {
+      comments: true;
+      likes: true;
+      author: {
+        select: {
+          name: true;
+          email: true;
+          imageURL: true;
+        };
+      };
+    };
+  }>[];
+};
+
+export const RecentArticles: React.FC<reactArticlesProps> = ({ articles }) => {
   return (
     <Card>
       <CardHeader className="flex items-center justify-between">
@@ -33,6 +50,14 @@ export const RecentArticles = () => {
           View All &#8594;
         </Button>
       </CardHeader>
+
+      {!articles.length && (
+        <CardContent>
+          <p className="text-sm text-muted-foreground">
+            You have no recent articles
+          </p>
+        </CardContent>
+      )}
 
       <CardContent>
         <Table>
@@ -48,52 +73,58 @@ export const RecentArticles = () => {
           </TableHeader>
 
           <TableBody>
-            <TableRow>
-              <TableCell className="text-left">this is title</TableCell>
-              <TableCell className="text-center">
-                <Badge
-                  variant={"secondary"}
-                  className="rounded-full bg-green-200 text-green-800"
-                >
-                  Published
-                </Badge>
-              </TableCell>
-              <TableCell className="text-center">200</TableCell>
-              <TableCell className="text-center">30</TableCell>
-              <TableCell className="text-center">20 feb</TableCell>
-              <TableCell className="text-right">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      className="cursor-pointer bg-transparent hover:bg-transparent"
-                    >
-                      <Ellipsis />
-                    </Button>
-                  </DropdownMenuTrigger>
-
-                  <DropdownMenuContent>
-                    <DropdownMenuLabel>
-                      {/* edit button  */}
-                      <Link
-                        href={`/dashboard/articles/${123}/edit`}
-                        className="cursor-pointer"
+            {articles.map((article, index) => (
+              <TableRow key={index}>
+                <TableCell className="text-left">{article.title}</TableCell>
+                <TableCell className="text-center">
+                  <Badge
+                    variant={"secondary"}
+                    className="rounded-full bg-green-200 text-green-800"
+                  >
+                    Published
+                  </Badge>
+                </TableCell>
+                <TableCell className="text-center">{article.likes.length}</TableCell>
+                <TableCell className="text-center">
+                  {article.comments.length}
+                </TableCell>
+                <TableCell className="text-center">
+                  {article.createdAt.toDateString()}
+                </TableCell>
+                <TableCell className="text-right">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        className="cursor-pointer bg-transparent hover:bg-transparent"
                       >
-                        <Button
-                          variant={"ghost"}
-                          className="flex gap-2 items-center justify-start w-full cursor-pointer"
-                        >
-                          <PenIcon className="h-4 w-4" /> Edit
-                        </Button>
-                      </Link>
+                        <Ellipsis />
+                      </Button>
+                    </DropdownMenuTrigger>
 
-                      {/* delete button  */}
-                      <DeleteButton />
-                    </DropdownMenuLabel>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </TableCell>
-            </TableRow>
+                    <DropdownMenuContent>
+                      <DropdownMenuLabel>
+                        {/* edit button  */}
+                        <Link
+                          href={`/dashboard/articles/${article.id}/edit`}
+                          className="cursor-pointer"
+                        >
+                          <Button
+                            variant={"ghost"}
+                            className="flex gap-2 items-center justify-start w-full cursor-pointer"
+                          >
+                            <PenIcon className="h-4 w-4" /> Edit
+                          </Button>
+                        </Link>
+
+                        {/* delete button  */}
+                        <DeleteButton />
+                      </DropdownMenuLabel>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </CardContent>
