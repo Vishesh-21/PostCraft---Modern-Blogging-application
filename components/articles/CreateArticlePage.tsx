@@ -104,11 +104,11 @@ export const CreateArticlePage = () => {
                   name="featuredImage"
                   accept="image/*"
                 />
-                {/* {formState.errors.featuredImage && (
+                {formState.errors.featuredImage && (
                   <p className="text-red-500 text-sm">
                     {formState.errors.featuredImage}
                   </p>
-                )} */}
+                )}
               </div>
             </div>
 

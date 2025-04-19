@@ -84,7 +84,7 @@ export const BlogDashboard = async () => {
             <CardTitle className="font-medium text-xl">
               Total comments
             </CardTitle>
-            <Heart className="h-5 w-5" />
+            <MessageCircle className="h-5 w-5" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{totalComments}</div>
