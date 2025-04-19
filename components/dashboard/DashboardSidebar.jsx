@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
+import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import {
   BarChart,
@@ -11,10 +14,41 @@ import {
 } from "lucide-react";
 
 export const DashboardSidebar = () => {
+  const pathname = usePathname();
+
+  const links = [
+    { href: "/", label: "Home", icon: <Home className="w-5 h-5 mr-2" /> },
+    {
+      href: "/dashboard",
+      label: "Dashboard",
+      icon: <LayoutDashboard className="w-5 h-5 mr-2" />,
+    },
+    {
+      href: "/dashboard/articles/create",
+      label: "Articles",
+      icon: <FileText className="w-5 h-5 mr-2" />,
+    },
+    {
+      href: "/dashboard/comments",
+      label: "Comments",
+      icon: <MessageCircle className="w-5 h-5 mr-2" />,
+    },
+    {
+      href: "/dashboard/analytics",
+      label: "Analytics",
+      icon: <BarChart className="w-5 h-5 mr-2" />,
+    },
+    {
+      href: "/dashboard/settings",
+      label: "Settings",
+      icon: <Settings className="w-5 h-5 mr-2" />,
+    },
+  ];
+
   return (
     <div className="h-full px-3 py-6">
       <div className="flex items-center gap-2 mb-8 px-2">
-        <Link href={"/"}>
+        <Link href="/">
           <h1 className="md:text-4xl text-3xl font-bold">
             <span className="text-primary">P</span>ost
             <span className="text-primary">C</span>raft
@@ -23,65 +57,23 @@ export const DashboardSidebar = () => {
       </div>
 
       <nav className="space-y-2">
-        <Link href={"/"}>
-          <Button
-            className="w-full justify-start cursor-pointer"
-            variant="ghost"
-          >
-            <Home className="w-5 h-5 mr-2" />
-            Home
-          </Button>
-        </Link>
+        {links.map(({ href, label, icon }) => {
+          const isActive = pathname === href;
 
-        <Link href={"/dashboard"}>
-          <Button
-            className="w-full justify-start cursor-pointer"
-            variant="ghost"
-          >
-            <LayoutDashboard className="w-5 h-5 mr-2" />
-            Dashboard
-          </Button>
-        </Link>
-
-        <Link href={"/dashboard/articles/create"}>
-          <Button
-            className="w-full justify-start cursor-pointer"
-            variant="ghost"
-          >
-            <FileText className="w-5 h-5 mr-2" />
-            Articles
-          </Button>
-        </Link>
-
-        <Link href={"/dashboard"}>
-          <Button
-            className="w-full justify-start cursor-pointer"
-            variant="ghost"
-          >
-            <MessageCircle className="w-5 h-5 mr-2" />
-            Comments
-          </Button>
-        </Link>
-
-        <Link href={"/dashboard"}>
-          <Button
-            className="w-full justify-start cursor-pointer"
-            variant="ghost"
-          >
-            <BarChart className="w-5 h-5 mr-2" />
-            Analytics
-          </Button>
-        </Link>
-
-        <Link href={"/dashboard"}>
-          <Button
-            className="w-full justify-start cursor-pointer"
-            variant="ghost"
-          >
-            <Settings className="w-5 h-5 mr-2" />
-            Settings
-          </Button>
-        </Link>
+          return (
+            <Link key={href} href={href}>
+              <Button
+                className={`w-full justify-start cursor-pointer ${
+                  isActive ? "bg-muted text-primary" : ""
+                }`}
+                variant="ghost"
+              >
+                {icon}
+                {label}
+              </Button>
+            </Link>
+          );
+        })}
       </nav>
     </div>
   );
