@@ -20,6 +20,12 @@ type commentsProps = {
 export const CommentList: React.FC<commentsProps> = ({ comments }) => {
   return (
     <div className="space-y-4">
+      {comments.length === 0 && (
+        <div className="text-center">
+          <span className="font-bold">No comments yet</span>
+        </div>
+      )}
+      
       {comments.map((comment) => {
         return (
           <div className="flex gap-4" key={comment.id}>

@@ -1,6 +1,12 @@
 import { Prisma } from "@prisma/client";
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Separator } from "../ui/separator";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
@@ -45,9 +51,9 @@ export const ArticleCard: React.FC<ArticleCardProp> = async ({ article }) => {
   });
 
   return (
-    <main className="max-w-5xl mx-auto px-4 mb-10">
-      <Card className="bg-background text-foreground shadow-md relative">
-        <div className="absolute top-5 right-5">
+    <main className="max-w-7xl flex flex-col md:flex-row gap-6 mx-auto px-4 mb-10">
+      <Card className="bg-background md:w-[65%] w-full text-foreground shadow-md relative">
+        <div className="absolute top-2 right-2">
           <Badge variant="secondary" className="text-normal border-1">
             {article.category}
           </Badge>
@@ -76,7 +82,7 @@ export const ArticleCard: React.FC<ArticleCardProp> = async ({ article }) => {
         <Separator />
 
         <CardContent className="prose prose-neutral dark:prose-invert max-w-none mt-4 space-y-4">
-          <div className="md:w-1/2 w-full mx-auto h-[300px]">
+          <div className="w-full mx-auto h-[300px]">
             <Image
               src={article.feature || articleImage}
               alt={article.title}
@@ -91,14 +97,17 @@ export const ArticleCard: React.FC<ArticleCardProp> = async ({ article }) => {
           />
 
           {/* articles action  */}
-          <div>
-            <LikeButton />
-            <CommentInput articleId={article.id} />
-          </div>
+          <LikeButton />
+        </CardContent>
+      </Card>
 
-          {/* comment section  */}
+      <Card className="relative md:w-[380px] w-full max-h-screen overflow-auto">
+        <CardContent className="max-h-[90vh] overflow-y-auto">
           <CommentList comments={comments} />
         </CardContent>
+        <CardFooter className="absolute bottom-0 w-full z-[100] bg-background pt-3">
+          <CommentInput articleId={article.id} />
+        </CardFooter>
       </Card>
     </main>
   );

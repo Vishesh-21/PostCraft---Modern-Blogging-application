@@ -30,7 +30,7 @@ export const CommentInput: React.FC<commentInputProps> = ({ articleId }) => {
   };
 
   return (
-    <form action={action} ref={formRef} className="mb-8">
+    <form action={action} ref={formRef} className="mb-8 w-full">
       <div className="flex gap-4 items-center">
         <Avatar>
           <AvatarImage src="" />
