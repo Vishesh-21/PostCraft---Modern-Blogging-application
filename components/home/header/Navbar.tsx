@@ -34,7 +34,7 @@ export const Navbar: React.FC = () => {
         {/* desktop view section  */}
         <div className="hidden md:flex items-center gap-10 text-[0.9rem] font-[500]">
           <Link
-            href={"/dashboard/articles/create"}
+            href={"/articles/"}
             className="hover:text-primary transition-all duration-200"
           >
             Articles

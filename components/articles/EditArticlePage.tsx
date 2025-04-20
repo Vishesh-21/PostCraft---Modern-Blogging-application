@@ -32,7 +32,7 @@ type EditArticlePageProps = {
 export const EditArticlePage: React.FC<EditArticlePageProps> = ({
   article,
 }) => {
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState(article?.content || "");
   const [formState, action, isPending] = useActionState(
     EditArticle.bind(null, article.id),
     {
@@ -141,11 +141,7 @@ export const EditArticlePage: React.FC<EditArticlePageProps> = ({
 
             <div className="space-y-2">
               <Label>Content</Label>
-              <ReactQuill
-                theme="snow"
-                value={article?.content}
-                onChange={setContent}
-              />
+              <ReactQuill theme="snow" value={content} onChange={setContent} />
               {formState.errors.content && (
                 <p className="text-red-500 text-sm">
                   {formState.errors.content[0]}
