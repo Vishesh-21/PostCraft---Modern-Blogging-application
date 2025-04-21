@@ -16,6 +16,7 @@ import { LikeButton } from "./LikeButton";
 import { CommentList } from "./CommentList";
 import { CommentInput } from "./CommentInput";
 import { prisma } from "@/lib/prisma";
+import { auth } from "@clerk/nextjs/server";
 
 type ArticleCardProp = {
   article: Prisma.ArticlesGetPayload<{
@@ -49,6 +50,22 @@ export const ArticleCard: React.FC<ArticleCardProp> = async ({ article }) => {
       createAt: "desc",
     },
   });
+
+  const likes = await prisma.like.findMany({
+    where: {
+      articleId: article.id,
+    },
+  });
+
+  const { userId } = await auth();
+
+  const user = await prisma.user.findUnique({
+    where: {
+      clerkUserId: userId as string,
+    },
+  });
+
+  const isLiked: boolean = likes.some((like) => like.userId === user?.id);
 
   return (
     <main className="max-w-7xl flex flex-col md:flex-row gap-6 mx-auto px-4 mb-10">
@@ -97,7 +114,7 @@ export const ArticleCard: React.FC<ArticleCardProp> = async ({ article }) => {
           />
 
           {/* articles action  */}
-          <LikeButton />
+          <LikeButton articleId={article.id} likes={likes} isLiked={isLiked} />
         </CardContent>
       </Card>
 
