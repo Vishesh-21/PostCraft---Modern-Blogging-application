@@ -67,6 +67,10 @@ export const ArticleCard: React.FC<ArticleCardProp> = async ({ article }) => {
 
   const isLiked: boolean = likes.some((like) => like.userId === user?.id);
 
+  const TotalComments = await prisma.comment.findMany({
+    where: { articleId: article.id },
+  });
+
   return (
     <main className="max-w-7xl flex flex-col md:flex-row gap-6 mx-auto px-4 mb-10">
       <Card className="bg-background md:w-[65%] w-full text-foreground shadow-md relative">
@@ -114,7 +118,7 @@ export const ArticleCard: React.FC<ArticleCardProp> = async ({ article }) => {
           />
 
           {/* articles action  */}
-          <LikeButton articleId={article.id} likes={likes} isLiked={isLiked} />
+          <LikeButton articleId={article.id} likes={likes} isLiked={isLiked} comments={TotalComments}/>
         </CardContent>
       </Card>
 

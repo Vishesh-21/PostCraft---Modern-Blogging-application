@@ -3,19 +3,21 @@
 import React, { useOptimistic, useTransition } from "react";
 import { Button } from "../ui/button";
 import { Bookmark, Heart, MessageCircle, Share2 } from "lucide-react";
-import { Like } from "@prisma/client";
+import { Comment, Like } from "@prisma/client";
 import { likeDislikeToggle } from "@/actions/like-article";
 
 type likeButtonProps = {
   articleId: string;
   likes: Like[];
   isLiked: boolean;
+  comments: Comment[];
 };
 
 export const LikeButton: React.FC<likeButtonProps> = ({
   articleId,
   likes,
   isLiked,
+  comments,
 }) => {
   const [optimisticLike, setOptimisticLike] = useOptimistic(likes.length);
   const [isPending, startTransition] = useTransition();
@@ -44,7 +46,7 @@ export const LikeButton: React.FC<likeButtonProps> = ({
       </form>
 
       <Button className="cursor-pointer gap-2" variant={"ghost"}>
-        <MessageCircle className="w-5 h-5" /> 0
+        <MessageCircle className="w-5 h-5" /> {comments.length}
       </Button>
 
       <Button className="cursor-pointer gap-2" variant={"ghost"}>
