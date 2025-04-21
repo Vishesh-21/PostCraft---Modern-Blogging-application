@@ -1,5 +1,4 @@
 import { ArticleCard } from "@/components/articles/ArticleCard";
-import { Navbar } from "@/components/home/header/Navbar";
 import { prisma } from "@/lib/prisma";
 import React from "react";
 
@@ -34,8 +33,6 @@ const ArticleDetailPage = async ({ params }: ArticleDetailProp) => {
 
   return (
     <main>
-      <Navbar />
-
       {/* article card  */}
       <div className="max-w-6xl mx-auto mt-8">
         <ArticleCard article={article} />

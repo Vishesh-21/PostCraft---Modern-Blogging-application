@@ -6,11 +6,17 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { LoaderIcon, Send } from "lucide-react";
 import { createComment } from "@/actions/create-comment";
+import { User } from "@prisma/client";
 
 type commentInputProps = {
   articleId: string;
+  user: User;
 };
-export const CommentInput: React.FC<commentInputProps> = ({ articleId }) => {
+
+export const CommentInput: React.FC<commentInputProps> = ({
+  articleId,
+  user,
+}) => {
   const [formState, action, isPending] = useActionState(
     createComment.bind(null, articleId),
     { errors: {} }
@@ -33,7 +39,7 @@ export const CommentInput: React.FC<commentInputProps> = ({ articleId }) => {
     <form action={action} ref={formRef} className="mb-8 w-full">
       <div className="flex gap-4 items-center">
         <Avatar>
-          <AvatarImage src="" />
+          <AvatarImage src={(user.imageURL as string) || ""} />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
 

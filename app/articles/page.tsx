@@ -1,6 +1,5 @@
 import { AllArticlesPage } from "@/components/articles/AllArticles";
 import { InputSearch } from "@/components/articles/InputSearch";
-import { Navbar } from "@/components/home/header/Navbar";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import React from "react";
@@ -8,9 +7,6 @@ import React from "react";
 const AllArticles = () => {
   return (
     <main>
-      {/* page header  */}
-      <Navbar />
-
       <div className="max-w-6xl mx-auto">
         {/* page heading */}
         <div className="m-6 space-y-6 text-center">

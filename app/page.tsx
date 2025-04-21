@@ -6,6 +6,7 @@ import { HowItWorks } from "@/components/home/HowItWorks";
 import { StatsSection } from "@/components/home/StatsSection";
 import { Testimonials } from "@/components/home/Testimonials";
 import { TopArticles } from "@/components/home/TopArticles";
+import { Loader } from "lucide-react";
 import React, { Suspense } from "react";
 
 export default function Home() {
@@ -14,13 +15,24 @@ export default function Home() {
       <Navbar />
       <div className="mx-auto max-w-6xl mt-4 md:px-0 px-4 ">
         <HeroSection />
-        <Suspense fallback={<div className="text-primary animate-caret-blink text-center text-xl font-semibold mt-24">Loading...</div>}><TopArticles/></Suspense>
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center w-full h-[90vh]">
+              <Loader
+                className="text-primary h-10 w-10 animate-spin"
+                style={{ animationDuration: "2s" }}
+              />
+            </div>
+          }
+        >
+          <TopArticles />
+        </Suspense>
         <Features />
         <HowItWorks />
-        <StatsSection/>
+        <StatsSection />
         <Testimonials />
       </div>
-      <Footer/>
+      <Footer />
     </main>
   );
 }

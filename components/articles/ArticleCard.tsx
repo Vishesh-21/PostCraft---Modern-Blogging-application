@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma, User } from "@prisma/client";
 import React from "react";
 import {
   Card,
@@ -118,7 +118,12 @@ export const ArticleCard: React.FC<ArticleCardProp> = async ({ article }) => {
           />
 
           {/* articles action  */}
-          <LikeButton articleId={article.id} likes={likes} isLiked={isLiked} comments={TotalComments}/>
+          <LikeButton
+            articleId={article.id}
+            likes={likes}
+            isLiked={isLiked}
+            comments={TotalComments}
+          />
         </CardContent>
       </Card>
 
@@ -127,7 +132,7 @@ export const ArticleCard: React.FC<ArticleCardProp> = async ({ article }) => {
           <CommentList comments={comments} />
         </CardContent>
         <CardFooter className="absolute bottom-0 w-full z-[100] bg-background pt-3">
-          <CommentInput articleId={article.id} />
+          <CommentInput articleId={article.id} user={user as User} />
         </CardFooter>
       </Card>
     </main>
