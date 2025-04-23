@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { Button } from "../../ui/button";
 import { ToggleMode } from "./ToggleMode";
 import { SearchInput } from "./SearchInput";
-import { X } from "lucide-react";
+import { CircleUser, Home, LayoutDashboard, Newspaper, X } from "lucide-react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import {
   SignedIn,
@@ -14,6 +14,35 @@ import {
   SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
+
+type linkType = {
+  icon: React.JSX.Element;
+  link: string;
+  name: string;
+};
+
+const LinkData: linkType[] = [
+  {
+    icon: <Home className="h-5 w-5" />,
+    link: "/",
+    name: "Home",
+  },
+  {
+    icon: <Newspaper className="h-5 w-5" />,
+    link: "/articles/",
+    name: "Articles",
+  },
+  {
+    icon: <LayoutDashboard className="h-5 w-5" />,
+    link: "/dashboard",
+    name: "Dashboard",
+  },
+  {
+    icon: <CircleUser className="h-5 w-5" />,
+    link: "/about",
+    name: "About",
+  },
+];
 
 export const Navbar: React.FC = () => {
   const [isMobileDevice, setIsMobileDevice] = useState(false);
@@ -33,30 +62,16 @@ export const Navbar: React.FC = () => {
 
         {/* desktop view section  */}
         <div className="hidden md:flex items-center gap-10 text-[0.9rem] font-[500]">
-          <Link
-            href={"/articles/"}
-            className="hover:text-primary transition-all duration-200"
-          >
-            Articles
-          </Link>
-          <Link
-            href={"/tutorials"}
-            className="hover:text-primary transition-all duration-200"
-          >
-            Tutorials
-          </Link>
-          <Link
-            href={"/about"}
-            className="hover:text-primary transition-all duration-200"
-          >
-            About
-          </Link>
-          <Link
-            href={"/dashboard"}
-            className="hover:text-primary transition-all duration-200"
-          >
-            Dashboard
-          </Link>
+          {LinkData.map((link, index) => (
+            <Link
+              href={link.link}
+              key={index}
+              className="hover:text-primary transition-all flex gap-2 duration-200"
+            >
+              {link.icon}
+              {link.name}
+            </Link>
+          ))}
         </div>
 
         {/* right section */}
@@ -113,30 +128,17 @@ export const Navbar: React.FC = () => {
           <div className="fixed bg-background w-full h-50vh top-16 right-0 flex flex-col py-6 px-5">
             <div className="flex flex-col gap-3 text-[0.9rem] font-[500]">
               <SearchInput />
-              <Link
-                href={"/dashboard/articles/create"}
-                className="hover:text-primary transition-all duration-200"
-              >
-                Articles
-              </Link>
-              <Link
-                href={"/tutorials"}
-                className="hover:text-primary transition-all duration-200"
-              >
-                Tutorials
-              </Link>
-              <Link
-                href={"/about"}
-                className="hover:text-primary transition-all duration-200"
-              >
-                About
-              </Link>
-              <Link
-                href={"/dashboard"}
-                className="hover:text-primary transition-all duration-200"
-              >
-                Dashboard
-              </Link>
+
+              {LinkData.map((link, index) => (
+                <Link
+                  href={link.link}
+                  key={index}
+                  className="hover:text-primary transition-all flex gap-2 duration-200"
+                >
+                  {link.icon}
+                  {link.name}
+                </Link>
+              ))}
 
               <div className="flex flex-col gap-5">
                 <Button variant={"secondary"} className="cursor-pointer">
