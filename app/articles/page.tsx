@@ -1,10 +1,16 @@
 import { AllArticlesPage } from "@/components/articles/AllArticles";
 import { InputSearch } from "@/components/articles/InputSearch";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import React from "react";
+import { ArrowLeft, ArrowRight, Loader } from "lucide-react";
+import React, { Suspense } from "react";
 
-const AllArticles = () => {
+type searchPageProps = {
+  searchParams: Promise<{ search?: string }>;
+};
+
+const AllArticles: React.FC<searchPageProps> = async ({ searchParams }) => {
+  const query = (await searchParams).search || "";
+
   return (
     <main>
       <div className="max-w-6xl mx-auto">
@@ -17,7 +23,18 @@ const AllArticles = () => {
         <InputSearch />
 
         {/* articles cards  */}
-        <AllArticlesPage />
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center w-full h-[50vh]">
+              <Loader
+                className="text-primary h-10 w-10 animate-spin"
+                style={{ animationDuration: "2s" }}
+              />
+            </div>
+          }
+        >
+          <AllArticlesPage query={query} />
+        </Suspense>
 
         {/* Pagination  */}
         <div className="my-12 flex justify-center gap-2 ">

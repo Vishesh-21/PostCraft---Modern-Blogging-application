@@ -1,27 +1,22 @@
 import React from "react";
 import { Card, CardContent } from "../ui/card";
-import { Heart, MessageCircle } from "lucide-react";
+import { Heart, MessageCircle, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
+import { filterArticles } from "@/lib/filterArticles/filterArticlesByQuery";
 
-export const AllArticlesPage = async () => {
-  const articles = await prisma.articles.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-    include: {
-      comments: true,
-      author: {
-        select: {
-          name: true,
-          email: true,
-          imageURL: true,
-        },
-      },
-      likes: true,
-    },
-  });
+type AllArticlesPageProps = {
+  query: string;
+};
+
+export const AllArticlesPage: React.FC<AllArticlesPageProps> = async ({
+  query,
+}) => {
+  const articles = await filterArticles(query);
+
+  if (articles.length <= 0) {
+    return <NotSearchResult />;
+  }
 
   return (
     <section className="w-full flex items-center mt-10">
@@ -89,5 +84,20 @@ export const AllArticlesPage = async () => {
         )}
       </Card>
     </section>
+  );
+};
+
+const NotSearchResult = () => {
+  return (
+    <div className="flex flex-col items-center justify-center p-8 text-center">
+      <div className="mb-4 rounded-full bg-muted p-4">
+        <Search className="h-10 w-10" />
+      </div>
+      <h3 className="font-bold text-xl">No Result Found</h3>
+      <p className="mt-2">
+        Try searching for something else, we couldn&apos;t find what you were
+        looking for!
+      </p>
+    </div>
   );
 };
