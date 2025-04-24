@@ -22,7 +22,7 @@ export const AllArticlesPage: React.FC<AllArticlesPageProps> = async ({
     <section className="w-full flex items-center mt-10">
       <Card className="w-full bg-background">
         {articles.length ? (
-          <CardContent className="grid grid-cols-1 sm:grid-cols-1 mt-6 md:grid-cols-3 gap-5">
+          <CardContent className="grid grid-cols-1 sm:grid-cols-1 my-8 md:grid-cols-3 gap-5">
             {articles?.map((article) => {
               return (
                 <Link

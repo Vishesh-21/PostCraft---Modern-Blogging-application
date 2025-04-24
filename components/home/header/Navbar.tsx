@@ -14,6 +14,7 @@ import {
   SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
+import { usePathname } from "next/navigation";
 
 type linkType = {
   icon: React.JSX.Element;
@@ -23,22 +24,22 @@ type linkType = {
 
 const LinkData: linkType[] = [
   {
-    icon: <Home className="h-5 w-5" />,
+    icon: <Home className="h-4 w-4" />,
     link: "/",
     name: "Home",
   },
   {
-    icon: <Newspaper className="h-5 w-5" />,
-    link: "/articles/",
+    icon: <Newspaper className="h-4 w-4" />,
+    link: "/articles",
     name: "Articles",
   },
   {
-    icon: <LayoutDashboard className="h-5 w-5" />,
+    icon: <LayoutDashboard className="h-4 w-4" />,
     link: "/dashboard",
     name: "Dashboard",
   },
   {
-    icon: <CircleUser className="h-5 w-5" />,
+    icon: <CircleUser className="h-4 w-4" />,
     link: "/about",
     name: "About",
   },
@@ -46,6 +47,7 @@ const LinkData: linkType[] = [
 
 export const Navbar: React.FC = () => {
   const [isMobileDevice, setIsMobileDevice] = useState(false);
+  const pathname = usePathname();
 
   return (
     <div className="sticky top-0 left-0 z-52 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -62,16 +64,21 @@ export const Navbar: React.FC = () => {
 
         {/* desktop view section  */}
         <div className="hidden md:flex items-center gap-10 text-[0.9rem] font-[500]">
-          {LinkData.map((link, index) => (
-            <Link
-              href={link.link}
-              key={index}
-              className="hover:text-primary transition-all flex gap-2 duration-200"
-            >
-              {link.icon}
-              {link.name}
-            </Link>
-          ))}
+          {LinkData.map((link, index) => {
+            const isActive = pathname === link.link;
+            return (
+              <Link
+                href={link.link}
+                key={index}
+                className={`flex gap-2 items-center transition-all duration-200 ${
+                  isActive ? "text-primary font-semibold" : "hover:text-primary"
+                }`}
+              >
+                {link.icon}
+                {link.name}
+              </Link>
+            );
+          })}
         </div>
 
         {/* right section */}

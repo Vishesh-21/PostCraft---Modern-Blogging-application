@@ -1,5 +1,6 @@
 import { AllArticlesPage } from "@/components/articles/AllArticles";
 import { InputSearch } from "@/components/articles/InputSearch";
+import { SkeletonCardComponent } from "@/components/articles/SkeletonCardComponent";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Loader } from "lucide-react";
 import React, { Suspense } from "react";
@@ -23,16 +24,7 @@ const AllArticles: React.FC<searchPageProps> = async ({ searchParams }) => {
         <InputSearch />
 
         {/* articles cards  */}
-        <Suspense
-          fallback={
-            <div className="flex items-center justify-center w-full h-[50vh]">
-              <Loader
-                className="text-primary h-10 w-10 animate-spin"
-                style={{ animationDuration: "2s" }}
-              />
-            </div>
-          }
-        >
+        <Suspense fallback={<SkeletonCardComponent />}>
           <AllArticlesPage query={query} />
         </Suspense>
 
@@ -100,3 +92,5 @@ const AllArticles: React.FC<searchPageProps> = async ({ searchParams }) => {
 };
 
 export default AllArticles;
+
+
