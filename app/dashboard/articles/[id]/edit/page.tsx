@@ -7,7 +7,7 @@ type EditPageProps = {
 };
 
 const EditPage = async ({ params }: EditPageProps) => {
-  const { id } = await params;
+  const { id } = params;
 
   const articleData = await prisma.articles.findUnique({
     where: {
