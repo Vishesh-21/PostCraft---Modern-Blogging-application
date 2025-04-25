@@ -3,17 +3,28 @@ import { Card, CardContent } from "../ui/card";
 import { Heart, MessageCircle, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { filterArticles } from "@/lib/filterArticles/filterArticlesByQuery";
+import type { Prisma } from "@prisma/client";
 
 type AllArticlesPageProps = {
-  query: string;
+  articles:
+    | Prisma.ArticlesGetPayload<{
+        include: {
+          author: {
+            select: {
+              name: true;
+              email: true;
+              imageURL: true;
+            };
+          };
+          comments: true;
+          likes: true;
+        };
+      }>[];
 };
 
 export const AllArticlesPage: React.FC<AllArticlesPageProps> = async ({
-  query,
+  articles,
 }) => {
-  const articles = await filterArticles(query);
-
   if (articles.length <= 0) {
     return <NotSearchResult />;
   }
