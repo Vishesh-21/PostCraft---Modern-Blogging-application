@@ -7,6 +7,7 @@ import { prisma } from "@/lib/prisma";
 import { Button } from "../ui/button";
 import userImage from "@/public/userImage.jpeg";
 import articleImage from "@/public/articleImage.jpeg";
+import { formateDate } from "@/lib/dateFormate";
 
 export const TopArticles = async () => {
   const articles = await prisma.articles.findMany({
@@ -68,7 +69,9 @@ export const TopArticles = async () => {
                     </h3>
                     <div className="mt-4 flex items-center justify-between text-sm">
                       <span>
-                        {new Date(article?.createdAt).toLocaleDateString()}
+                       {
+                        formateDate(article.createdAt)
+                       }
                       </span>
                       <span>12 mints read</span>
                     </div>

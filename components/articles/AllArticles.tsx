@@ -4,6 +4,7 @@ import { Heart, MessageCircle, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Prisma } from "@prisma/client";
+import { formateDate } from "@/lib/dateFormate";
 
 type AllArticlesPageProps = {
   articles:
@@ -68,9 +69,7 @@ export const AllArticlesPage: React.FC<AllArticlesPageProps> = async ({
                       {article?.category}
                     </h3>
                     <div className="mt-4 flex items-center justify-between text-sm">
-                      <span>
-                        {new Date(article?.createdAt).toLocaleDateString()}
-                      </span>
+                      <span>{formateDate(article.createdAt)}</span>
                       <span>12 mints read</span>
                     </div>
                     <div className="mt-3 absolute bottom-2 right-4 flex items-center justify-end gap-4 text-sm text-foreground">

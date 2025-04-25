@@ -26,6 +26,9 @@ export const filterArticles = async (
       },
       skip: skip,
       take: take,
+      orderBy : {
+        createdAt: 'desc'
+      }
     }),
 
     prisma.articles.count({
