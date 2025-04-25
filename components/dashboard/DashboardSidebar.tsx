@@ -29,17 +29,17 @@ export const DashboardSidebar = () => {
       icon: <FileText className="w-5 h-5 mr-2" />,
     },
     {
-      href: "/dashboard/comments",
+      href: "#",
       label: "Comments",
       icon: <MessageCircle className="w-5 h-5 mr-2" />,
     },
     {
-      href: "/dashboard/analytics",
+      href: "#",
       label: "Analytics",
       icon: <BarChart className="w-5 h-5 mr-2" />,
     },
     {
-      href: "/dashboard/settings",
+      href: "#",
       label: "Settings",
       icon: <Settings className="w-5 h-5 mr-2" />,
     },

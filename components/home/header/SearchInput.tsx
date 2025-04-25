@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { searchAction } from "@/actions/search-article";
 
 export const SearchInput = () => {
+  
   const query = useSearchParams();
 
   return (

@@ -40,7 +40,7 @@ const LinkData: linkType[] = [
   },
   {
     icon: <CircleUser className="h-4 w-4" />,
-    link: "/about",
+    link: "https://github.com/Vishesh-21",
     name: "About",
   },
 ];
@@ -147,12 +147,18 @@ export const Navbar: React.FC = () => {
                 </Link>
               ))}
 
-              <div className="flex flex-col gap-5">
-                <Button variant={"secondary"} className="cursor-pointer">
-                  Signup
-                </Button>
-                <Button className="cursor-pointer">Login</Button>
-              </div>
+              <SignedOut>
+                <div className="hidden md:flex items-center space-x-2">
+                  <SignUpButton>
+                    <Button variant={"secondary"} className="cursor-pointer">
+                      Signup
+                    </Button>
+                  </SignUpButton>
+                  <SignInButton>
+                    <Button className="cursor-pointer">Login</Button>
+                  </SignInButton>
+                </div>
+              </SignedOut>
             </div>
           </div>
         )}
