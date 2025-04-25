@@ -9,14 +9,6 @@ import userImage from "@/public/userImage.jpeg";
 import articleImage from "@/public/articleImage.jpeg";
 import { formateDate } from "@/lib/dateFormate";
 
-/*************  ✨ Windsurf Command ⭐  *************/
-/**
- * @description Renders a component that displays the top 3 latest articles
- * @returns {ReactElement} TopArticles component
- * @example
- * <TopArticles />
- */
-/*******  e71884d9-5b1d-4806-b5d2-f9e430e8db75  *******/
 export const TopArticles = async () => {
   let articles = null;
 
