@@ -9,7 +9,7 @@ type ArticleDetailProp = {
 };
 
 const ArticleDetailPage = async ({ params }: ArticleDetailProp) => {
-  const { id } = await params;
+  const { id } = params;
 
   const article = await prisma.articles.findUnique({
     where: { id: id },
