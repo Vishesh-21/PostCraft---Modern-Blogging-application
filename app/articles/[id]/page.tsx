@@ -9,18 +9,24 @@ type Props = {
 export default async function ArticleDetailPage({ params }: Props) {
   const { id } = params;
 
-  const article = await prisma.articles.findUnique({
-    where: { id: id },
-    include: {
-      author: {
-        select: {
-          name: true,
-          email: true,
-          imageURL: true,
+  let article = null;
+
+  try {
+    article = await prisma.articles.findUnique({
+      where: { id: id },
+      include: {
+        author: {
+          select: {
+            name: true,
+            email: true,
+            imageURL: true,
+          },
         },
       },
-    },
-  });
+    });
+  } catch (error) {
+    console.log("error", error);
+  }
 
   if (!article)
     return (

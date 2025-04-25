@@ -9,23 +9,37 @@ import userImage from "@/public/userImage.jpeg";
 import articleImage from "@/public/articleImage.jpeg";
 import { formateDate } from "@/lib/dateFormate";
 
+/*************  ✨ Windsurf Command ⭐  *************/
+/**
+ * @description Renders a component that displays the top 3 latest articles
+ * @returns {ReactElement} TopArticles component
+ * @example
+ * <TopArticles />
+ */
+/*******  e71884d9-5b1d-4806-b5d2-f9e430e8db75  *******/
 export const TopArticles = async () => {
-  const articles = await prisma.articles.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-    include: {
-      comments: true,
-      author: {
-        select: {
-          name: true,
-          email: true,
-          imageURL: true,
-        },
+  let articles = null;
+
+  try {
+    articles = await prisma.articles.findMany({
+      orderBy: {
+        createdAt: "desc",
       },
-      likes: true,
-    },
-  });
+      include: {
+        comments: true,
+        author: {
+          select: {
+            name: true,
+            email: true,
+            imageURL: true,
+          },
+        },
+        likes: true,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 
   return (
     <>
@@ -68,11 +82,7 @@ export const TopArticles = async () => {
                       {article?.category}
                     </h3>
                     <div className="mt-4 flex items-center justify-between text-sm">
-                      <span>
-                       {
-                        formateDate(article.createdAt)
-                       }
-                      </span>
+                      <span>{formateDate(article.createdAt)}</span>
                       <span>12 mints read</span>
                     </div>
                     <div className="mt-3 absolute bottom-2 right-4 flex items-center justify-end gap-4 text-sm text-foreground">

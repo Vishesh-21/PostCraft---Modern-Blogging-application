@@ -9,11 +9,17 @@ type EditPageProps = {
 const EditPage = async ({ params }: EditPageProps) => {
   const { id } = params;
 
-  const articleData = await prisma.articles.findUnique({
-    where: {
-      id: id,
-    },
-  });
+  let articleData = null;
+
+  try {
+    articleData = await prisma.articles.findUnique({
+      where: {
+        id: id,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 
   if (!articleData)
     return (
