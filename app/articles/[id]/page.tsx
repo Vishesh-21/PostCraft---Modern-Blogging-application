@@ -2,13 +2,11 @@ import { ArticleCard } from "@/components/articles/ArticleCard";
 import { prisma } from "@/lib/prisma";
 import React from "react";
 
-type ArticleDetailProp = {
-  params: {
-    id: string;
-  };
+type Props = {
+  params: { id: string };
 };
 
-const ArticleDetailPage = async ({ params }: ArticleDetailProp) => {
+const ArticleDetailPage = async ({ params }: Props) => {
   const { id } = params;
 
   const article = await prisma.articles.findUnique({
