@@ -3,7 +3,7 @@ import { InputSearch } from "@/components/articles/InputSearch";
 import { SkeletonCardComponent } from "@/components/articles/SkeletonCardComponent";
 import { Button } from "@/components/ui/button";
 import { filterArticles } from "@/lib/filterArticles/filterArticlesByQuery";
-import { ArrowLeft, ArrowRight, Loader } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import React, { Suspense } from "react";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, CardFooter, CardTitle } from "../ui/card";
+import { CardContent, CardFooter } from "../ui/card";
 import { Heart, MessageCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

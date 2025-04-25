@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
+import { Card, CardContent, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import { Star } from "lucide-react";
 
@@ -23,14 +23,14 @@ export const HowItWorks: React.FC = () => {
             rewarding. First, sign up for free and set up your personal profile
             in just a few clicks — no tech skills needed. <br />
             <br />
-            Once you're in, unleash your creativity using our powerful yet
+            Once you&apos;re in, unleash your creativity using our powerful yet
             simple editor designed for both beginners and seasoned writers.
-            Whether you're drafting your first blog post or building an entire
-            content strategy, you’ll have the tools to format, style, and
-            organize your writing just the way you like. <br />
-            <br /> When you’re ready, hit publish — and your content is
+            Whether you&apos;re drafting your first blog post or building an
+            entire content strategy, you&apos;ll have the tools to format,
+            style, and organize your writing just the way you like. <br />
+            <br /> When you&apos;re ready, hit publish — and your content is
             instantly live, beautifully presented, and accessible to readers
-            around the world.But it doesn’t stop there. With built-in SEO
+            around the world. But it doesn&apos;t stop there. With built-in SEO
             support, reader engagement features, and performance analytics, you
             can track your growth and optimize your content to reach even more
             people. <br />
