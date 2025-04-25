@@ -6,7 +6,7 @@ type Props = {
   params: { id: string };
 };
 
-const ArticleDetailPage: React.FC<Props> = async ({ params }) => {
+const ArticleDetailPage = async ({ params }: Props) => {
   const { id } = params;
 
   const article = await prisma.articles.findUnique({
