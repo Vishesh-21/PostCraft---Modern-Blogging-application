@@ -57,11 +57,11 @@ export const DashboardSidebar = () => {
       </div>
 
       <nav className="space-y-2">
-        {links.map(({ href, label, icon }) => {
+        {links.map(({ href, label, icon },index) => {
           const isActive = pathname === href;
 
           return (
-            <Link key={href} href={href}>
+            <Link key={index} href={href}>
               <Button
                 className={`w-full justify-start cursor-pointer ${
                   isActive ? "bg-muted text-primary" : ""
