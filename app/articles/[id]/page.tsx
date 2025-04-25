@@ -6,7 +6,7 @@ type Props = {
   params: { id: string };
 };
 
-const ArticleDetailPage = async ({ params }: Props) => {
+export default async function ArticleDetailPage({ params }: Props) {
   const { id } = params;
 
   const article = await prisma.articles.findUnique({
@@ -37,6 +37,4 @@ const ArticleDetailPage = async ({ params }: Props) => {
       </div>
     </main>
   );
-};
-
-export default ArticleDetailPage;
+}
